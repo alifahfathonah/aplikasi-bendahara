@@ -38,8 +38,12 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         //
-        $transaksi = Transaksi::create($request->input());
-        return response()->json($transaksi);
+        $transaksi = new transaksi;
+        $transaksi->nama = $request ->nama;
+        $transaksi->kelas = $request ->kelas;
+        $transaksi->kategori = $request ->kategori;
+        $transaksi->save();
+        return redirect ('transaksi');
     }
 
     /**

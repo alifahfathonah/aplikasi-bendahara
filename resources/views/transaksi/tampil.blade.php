@@ -1,4 +1,7 @@
 @extends ('app')
+@section('judul')
+Data Transaksi
+@endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -72,11 +75,8 @@
 
 </div> <!-- /.content-wrapper -->
 
-<!-- Passing BASE URL to AJAX -->
-<input id="url" type="hidden" value="{{ \Request::url() }}">
-
 <!-- MODAL SECTION -->
-<div class="modal fade" id="myModal">
+<div class="modal fade" id="tambah-transaksi">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -86,7 +86,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form role="form" id="frmTransaksi" name="frmTransaksi">
+                <form role="form" action="/transaksi" method="post">
+                {{ csrf_field()}}
                     <div class="form-group">
                         <label for="">Nama Siswa</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukan Nama Siswa">
@@ -103,15 +104,8 @@
                         <label for="">Nominal</label>
                         <input type="number" class="form-control" id="nominal" name="nominal" placeholder="Masukan Nominal">
                     </div>
-                    <div class="form-group">
-                        <label for="">Tanggal</label>
-                        <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Masukan Tanggal">
-                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btn-save" value="add">Save Changes</button>
-                <input type="hidden" id="transaksi_id" name="transaksi_id" value="0">
             </div>
         </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->
